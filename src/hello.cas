@@ -1,0 +1,8 @@
+HELLO   START
+        RPUSH
+        OUT     TEMP,LEN
+        RPOP
+        RET
+TEMP    DC      'Hello, World'
+LEN     DC      12
+        END
