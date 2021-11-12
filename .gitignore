@@ -1,8 +1,11 @@
 # CASL II
-bat/CASL2.bat
-bat/RUN.bat
+config/CASL2.bat
+config/RUN.bat
 
 *.obj
+
+# vs code
+*.code-workspace
 
 # other
 practice/
