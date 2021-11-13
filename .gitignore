@@ -6,6 +6,7 @@ config/RUN.bat
 
 # vs code
 *.code-workspace
+.vscode/
 
 # other
 practice/
