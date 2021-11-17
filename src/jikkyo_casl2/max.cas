@@ -1,0 +1,15 @@
+; ex0701
+; require:
+;       GR2 : NUM
+;       GR3 : NUM
+; return:
+;       GR1 : max(GR2,GR3)
+;
+
+MAX     START
+        LD      GR1,GR2
+        CPA     GR2,GR3
+        JPL     MXFIN
+        LD      GR1,GR3
+MXFIN   RET
+        END

@@ -1,0 +1,25 @@
+; ex0702
+; solve the sum of Unsigned Integers
+;
+; require:
+;       GR1 : the number of values
+;       GR2 : the first value address
+; return:
+;       GR1 : the sum of values
+;
+
+SUM     START
+        PUSH    0,GR2
+        PUSH    0,GR3
+        LD      GR3,GR1
+        XOR     GR1,GR1
+        ADDL    GR3,GR2
+        SUBL    GR3,=1
+MXLP    CPL     GR2,GR3
+        JPL     MXFN
+        ADDL    GR1,0,GR2
+        LAD     GR2,1,GR2
+        JUMP    MXLP
+MXFN    POP     GR3
+        POP     GR2
+        RET

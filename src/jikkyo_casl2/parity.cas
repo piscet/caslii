@@ -1,0 +1,22 @@
+; ex0704
+;
+
+PARITY  START
+        PUSH    0,GR2
+        PUSH    0,GR3
+        PUSH    0,GR1
+        XOR     GR2,GR2
+PRTLP   LD      GR3,GR1
+        AND     GR3,=1
+        JZE     PRTZR
+        LAD     GR2,1,GR2
+PRTZR   SRL     GR1,1
+        JNZ     PRTLP
+        POP     GR1
+        AND     GR2,=1
+        JNZ     PRTFIN
+        OR      GR1,=1
+PRTFIN  POP     GR3
+        POP     GR2
+        RET
+        END

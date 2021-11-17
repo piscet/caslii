@@ -1,0 +1,22 @@
+; ex0704
+; require:
+;       GR2 : num of word
+;       GR3 : addr
+;       GR4 : addr
+; return:
+;
+
+MEMCPY  START
+        RPUSH
+        ADDL    GR2,GR3
+MEMLP   CPL     GR3,GR2
+        JZE     MEMBRK
+        LD      GR5,0,GR3
+        ST      GR5,0,GR4
+        LAD     GR3,1,GR3
+        LAD     GR4,1,GR4
+        JUMP    MEMLP
+MEMBRK  NOP
+        RPOP
+        RET
+        END
