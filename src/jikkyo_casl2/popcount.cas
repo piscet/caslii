@@ -1,0 +1,29 @@
+; pop count
+; require:
+;       GR1: valule
+; return:
+;       GR1: count the number of 1 (EIGO WAKARANAI)
+;
+
+POPCNT  START
+        PUSH    0,GR2
+        LD      GR2,GR1
+        SRL     GR2,1
+        AND     GR2,=#5555
+        SUBL    GR1,GR2
+        LD      GR2,GR1
+        AND     GR1,=#3333
+        SRL     GR2,2
+        AND     GR2,=#3333
+        ADDL    GR1,GR2
+        LD      GR2,GR1
+        SRL     GR2,4
+        ADDL    GR1,GR2
+        AND     GR1,=#0F0F
+        LD      GR2,GR1
+        SRL     GR2,8
+        ADDL    GR1,GR2
+        AND     GR1,=#00FF
+        POP     GR2
+        RET
+        END
