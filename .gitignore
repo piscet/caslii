@@ -12,3 +12,5 @@ config/RUN.bat
 practice/
 exercise/
 book/
+
+src/jikkyo_casl2/ex*.cas
