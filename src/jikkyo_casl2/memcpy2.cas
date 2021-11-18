@@ -1,0 +1,20 @@
+; EX0702
+;
+
+MEMCPY2 START
+        RPUSH
+        LD      GR5,GR4
+        ADDL    GR5,GR2
+MCLP2I  LD      GR6,0,GR3
+        PUSH    0,GR6
+        LAD     GR3,1,GR3
+        SUBL    GR2,=1
+        JPL     MCLP2I
+MCLP2O  SUBL    GR5,=1
+        POP     GR6
+        ST      GR6,0,GR5
+        CPL     GR5,GR4
+        JPL     MCLP2O
+        RPOP
+        RET
+        END

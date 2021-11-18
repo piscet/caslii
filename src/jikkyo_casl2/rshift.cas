@@ -1,0 +1,32 @@
+; EX0707
+; ワード数 GR2 のビット列 GR1 を GR3 ビット右に論理シフトする．
+
+RSHIFT  START
+        RPUSH
+RSLOOP  CPL     GR3,=1
+        JMI     RSBRK
+        CALL    RSFONE
+        SUBL    GR3,=1
+        JUMP    RSLOOP
+RSBRK   RPOP
+        RET
+;
+RSFONE  RPUSH
+        LAD     GR4,0           ; OV の管理
+RSFOLP  LD      GR3,0,GR1
+        AND     GR3,=1
+        JZE     RSFNOV
+        ADDL    GR4,=2
+RSFNOV  LD      GR3,0,GR1
+        SRL     GR3,1
+        SRL     GR4,1           ; 前回 OV していたか
+        JOV     RSFOV
+        JUMP    RSFONXT
+RSFOV   OR      GR3,=#8000
+RSFONXT ST      GR3,0,GR1
+        LAD     GR1,1,GR1
+        SUBL    GR2,=1
+        JPL     RSFOLP
+        RPOP
+        RET
+        END

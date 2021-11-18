@@ -1,0 +1,31 @@
+; EX0709
+; 10進数表示
+; require:
+;       GR1: number
+
+DECDISP START
+        RPUSH
+        PUSH    0
+LOOP    LAD     GR2,10
+        CALL    DIV
+        LD      GR3,DECSTR,GR2
+        PUSH    0,GR3
+        LD      GR1,GR1
+        JNZ     LOOP
+NXTSTEP LAD     GR1,BUF
+        LAD     GR2,0
+LOOP2   POP     GR3
+        LD      GR3,GR3
+        JZE     FIN
+        ST      GR3,0,GR1
+        LAD     GR1,1,GR1
+        LAD     GR2,1,GR2
+        JUMP    LOOP2
+FIN     ST      GR2,LEN
+NILEN   OUT     BUF,LEN
+        RPOP
+        RET
+BUF     DS      20
+LEN     DC      0
+DECSTR  DC      '0123456789'
+        END

@@ -1,0 +1,25 @@
+; hexadecimal display
+; require:
+;       GR1: num
+;
+
+HEXDISP START
+        RPUSH
+        LAD     GR2,HEXDATA
+        LD      GR3,GR2
+        ADDL    GR3,=4
+HXDLP   SUBL    GR3,=1
+        LD      GR4,GR1
+        AND     GR4,=#000F
+        LD      GR5,HEXSTR,GR4
+        ST      GR5,0,GR3
+        SRL     GR1,4
+        CPL     GR2,GR3
+        JMI     HXDLP
+        OUT     HEXDATA,HEXLEN
+        RPOP
+        RET
+HEXSTR  DC      '0123456789ABCDEF'
+HEXDATA DS      4
+HEXLEN  DC      4
+        END

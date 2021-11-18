@@ -1,0 +1,20 @@
+INADD   START
+        RPUSH
+        IN      A,LENA
+        IN      B,LENB
+        LAD     GR1,A
+        LD      GR2,LENA
+        CALL    GETNUM
+        LD      GR3,GR1
+        LAD     GR1,B
+        LD      GR2,LENB
+        CALL    GETNUM
+        ADDL    GR1,GR3
+        CALL    DECDISP
+        RPOP
+        RET
+A       DS      256
+B       DS      256
+LENA    DS      1
+LENB    DS      1
+        END

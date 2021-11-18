@@ -1,0 +1,36 @@
+DIV     START
+        PUSH    0,GR3
+        PUSH    0,GR4
+        PUSH    0,GR1
+        LD      GR3,GR2
+        LAD     GR4,0
+;
+DIVLPS  CPA     GR1,GR2
+        JMI     EDIVLPS
+        SRL     GR1,1
+        LAD     GR4,1,GR4
+        JUMP    DIVLPS
+EDIVLPS LAD     GR1,0
+        POP     GR2
+        LD      GR4,GR4
+        JZE     FINDIV
+        SLL     GR3,-1,GR4
+        ; DREG    DEBUG
+;
+DIVLPSC SLL     GR1,1
+        CPL     GR2,GR3
+        JMI     NEXTDIV
+        SUBL    GR2,GR3
+        LAD     GR1,1,GR1
+NEXTDIV SRL     GR3,1
+        SUBL    GR4,=1
+        JZE     FINDIV
+        LD      GR2,GR2
+        JNZ     DIVLPSC
+;
+        SLL     GR1,0,GR4
+FINDIV  POP     GR4
+        POP     GR3
+        RET
+DEBUG   DC      '**DEBUG*'
+        END

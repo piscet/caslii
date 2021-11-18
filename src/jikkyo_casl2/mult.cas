@@ -1,0 +1,28 @@
+; EX0708
+; 掛け算
+; require:
+;       GR1: a
+;       GR2: b
+; return:
+;       GR1: a*b
+;
+
+MULT    START
+        PUSH    0,GR2
+        PUSH    0,GR3
+        LD      GR3,GR1
+        LAD     GR1,0
+MULTLD  LD      GR2,GR2
+        JZE     MULTFIN
+        PUSH    0,GR2
+        AND     GR2,=1
+        JZE     MULTSKP
+        ADDL    GR1,GR3
+MULTSKP POP     GR2
+        SRL     GR2,1
+        SLL     GR3,1
+        JUMP    MULTLD
+MULTFIN POP     GR3
+        POP     GR2
+        RET
+        END

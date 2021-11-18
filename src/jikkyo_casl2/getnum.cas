@@ -1,0 +1,23 @@
+GETNUM  START
+        PUSH    0,GR2
+        PUSH    0,GR3
+        PUSH    0,GR4
+        PUSH    0,GR5
+        LD      GR3,GR1         ; 数字文字
+        LD      GR4,GR2         ; 長さ
+        ADDL    GR4,GR3         ; 終わり番地
+        XOR     GR1,GR1         ; 0 初期化
+        LAD     GR2,10
+LOOP    CALL    MULT            ; 10倍
+        LD      GR5,0,GR3
+        SUBL    GR5,='0'
+        ADDL    GR1,GR5
+        LAD     GR3,1,GR3
+        CPL     GR3,GR4
+        JMI     LOOP
+        POP     GR5
+        POP     GR4
+        POP     GR3
+        POP     GR2
+        RET
+        END
